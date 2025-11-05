@@ -45,7 +45,7 @@ jobs:
 
       - name: Build Widgetbook
         working-directory: widgetbook
-        run: flutter build web --release --base-href="/widgetbook/"
+        run: flutter build web --release
 
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli
@@ -60,8 +60,7 @@ jobs:
             --branch "${{ github.head_ref || github.ref_name }}" \
             --commit "${{ github.sha }}" \
             --repository "${{ github.repository }}" \
-            --actor "${{ github.actor }}" \
-            --build-path build/web
+            --actor "${{ github.actor }}"
 
       - name: Comment PR with Widgetbook Link
         if: github.event_name == 'pull_request'
