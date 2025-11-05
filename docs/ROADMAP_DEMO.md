@@ -24,18 +24,49 @@ Cada fase agrega complejidad gradualmente:
 - ✅ Addons básicos: Viewport, Theme, Localization, Alignment, Grid, TextScale
 - ✅ Documentación del primer push manual
 
+### ✅ Fase 1: Expandir Estados del Botón (COMPLETADO)
+
+**Objetivo:** Entender cómo catalogar diferentes estados de un componente.
+
+**Implementado:**
+- ✅ Use-case `Primary` (estado por defecto)
+- ✅ Use-case `Secondary` (variante)
+- ✅ Use-case `Disabled` (estado deshabilitado)
+- ✅ Use-case `Loading` (estado de carga)
+- ✅ Use-case `Interactive` (con knobs) - ya existía
+
 **Componentes activos:**
-- `AppButton` - 1 use-case interactivo
+- `AppButton` - 5 use-cases totales
 
-**Use-cases totales:** 1
+**Use-cases totales:** 5
 
-**Próximo paso:** Hacer el primer push a Widgetbook Cloud manualmente.
+### ✅ Fase 2: Integración con Figma (COMPLETADO)
+
+**Objetivo:** Aprender cómo conectar componentes con diseños de Figma.
+
+**Implementado:**
+- ✅ `designLink` agregado a todos los 5 use-cases del botón
+- ✅ Usando Figma: https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo
+- ✅ Diseñadores pueden usar overlay de Figma en Widgetbook Cloud
+
+### ✅ Fase 5: Automatización con GitHub Actions (COMPLETADO)
+
+**Objetivo:** Eliminar el proceso manual de push.
+
+**Implementado:**
+- ✅ Workflow activado en `.github/workflows/widgetbook.yml`
+- ✅ Push automático en cada push a main/develop
+- ✅ Push automático en cada PR
+- ✅ Comentarios automáticos en PRs con link de Widgetbook Cloud
+- ✅ Status check en PRs
+
+**Próximo paso:** Agregar segundo componente (Fase 3) o agregar fixtures (Fase 4).
 
 ---
 
 ## 🔜 Fases Futuras
 
-### Fase 1: Expandir Estados del Botón
+### Fase 1: Expandir Estados del Botón ✅ COMPLETADA
 
 **Objetivo:** Entender cómo catalogar diferentes estados de un componente.
 
@@ -499,8 +530,17 @@ En cada fase, evalúa:
 
 ---
 
-## 🎯 Estado Actual: FASE 0 ✅
+## 🎯 Estado Actual: FASES 0, 1, 2, 5 ✅
 
-**Próximo paso:** Ejecutar el primer push manual siguiendo `docs/PRIMER_PUSH_MANUAL.md`
+**Completado:**
+- ✅ Fase 0: Setup inicial
+- ✅ Fase 1: Expandir estados del botón (5 use-cases)
+- ✅ Fase 2: Integración con Figma (designLinks agregados)
+- ✅ Fase 5: GitHub Actions automático
 
-**¡Buena suerte con la demo!** 🚀
+**Próximas opciones:**
+- Fase 3: Agregar segundo componente (ej: InfoCard o UserCard)
+- Fase 4: Implementar fixtures para datos reutilizables
+- Fase 6: Catalogar componentes restantes
+
+**¡Gran progreso!** 🚀 El workflow automático está funcionando.

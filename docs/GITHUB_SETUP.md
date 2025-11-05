@@ -1,11 +1,10 @@
 # Configuración de GitHub Actions para Widgetbook Cloud
 
-> **⚠️ NOTA:** Este workflow está **deshabilitado** en la fase actual de la demo.
+> **✅ WORKFLOW ACTIVO:** El workflow de GitHub Actions está ahora **habilitado** y funcionando.
 >
-> Actualmente estamos usando push manual con el CLI de Widgetbook.
-> Este workflow se activará en una fase posterior cuando estemos listos para automatizar el proceso.
+> Cada push a `main`/`develop` y cada PR automáticamente construirá y publicará tu Widgetbook en Cloud.
 >
-> El archivo de workflow está guardado como `.github/workflows/widgetbook.yml.disabled`
+> El archivo de workflow está en `.github/workflows/widgetbook.yml`
 
 ---
 

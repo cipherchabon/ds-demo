@@ -12,51 +12,49 @@ Aprender Widgetbook de forma **gradual e incremental**:
 
 **Filosofía:** De menor a mayor complejidad.
 
-## 📍 Estado Actual: Fase 0 ✅
+## 📍 Estado Actual: Fases 0, 1, 2, 5 ✅
 
 **Lo que tenemos ahora:**
 - ✅ Sistema de diseño básico con componentes en `lib/design_system/`
 - ✅ Widgetbook configurado en `widgetbook/`
-- ✅ **1 solo componente catalogado:** AppButton
-- ✅ **1 solo use-case:** Interactive (con knobs)
-- ✅ Addons básicos configurados (Viewport, Theme, Grid, TextScale)
+- ✅ **AppButton catalogado con 5 use-cases:**
+  - Interactive (con knobs)
+  - Primary, Secondary, Disabled, Loading
+- ✅ **Integración con Figma:** Todos los use-cases tienen `designLink`
+- ✅ **GitHub Actions:** Push automático a Widgetbook Cloud en cada commit/PR
+- ✅ Addons configurados (Viewport, Theme, Grid, TextScale)
 
 **Lo que NO tenemos (todavía):**
-- ❌ GitHub Actions automatizado (se agregará en Fase 5)
-- ❌ Links de Figma (se agregarán en Fase 2)
 - ❌ Múltiples componentes (se agregarán en Fases 3-6)
 - ❌ Fixtures y testing avanzado (se agregarán en Fases 4 y 7)
+- ❌ Coverage tracking (Fase 8)
 
-## 🚀 Próximo Paso: Primer Push Manual
+## 🚀 Próximo Paso: Push Automático con GitHub
 
-Tu siguiente tarea es hacer el **primer push a Widgetbook Cloud** manualmente usando el CLI.
+Ahora que GitHub Actions está configurado, cada vez que hagas un push o crees un PR, tu Widgetbook se construirá y publicará automáticamente.
 
-**Guía completa:** [`docs/PRIMER_PUSH_MANUAL.md`](./docs/PRIMER_PUSH_MANUAL.md)
-
-**Resumen rápido:**
+**Para probar el workflow automático:**
 
 ```bash
-# 1. Ir al directorio de widgetbook
+# 1. Regenerar código (necesario después de agregar use-cases)
 cd widgetbook
-
-# 2. Instalar dependencias
-flutter pub get
-
-# 3. Generar código
 dart run build_runner build --delete-conflicting-outputs
 
-# 4. Construir para web
-flutter build web --release
+# 2. Commit y push
+git add .
+git commit -m "feat: Expandir use-cases del botón + integración Figma"
+git push origin main
 
-# 5. Instalar CLI (solo primera vez)
-dart pub global activate widgetbook_cli
-
-# 6. Push a Cloud (versión mínima)
-widgetbook cloud build push \
-  --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346"
+# 3. ¡Observa GitHub Actions en acción!
+# Ve a GitHub → Actions tab para ver el workflow ejecutándose
 ```
 
-**¿Problemas?** Consulta la sección de Troubleshooting en `docs/PRIMER_PUSH_MANUAL.md`.
+**Resultado esperado:**
+- ✅ Workflow se ejecuta automáticamente
+- ✅ Build se sube a Widgetbook Cloud
+- ✅ Puedes ver tus 5 use-cases en Cloud
+
+**¿Problemas?** Consulta [`docs/GITHUB_SETUP.md`](./docs/GITHUB_SETUP.md).
 
 ## 📋 Roadmap de la Demo
 
@@ -65,11 +63,11 @@ Esta demo está organizada en **10 fases incrementales**. Puedes detenerte en cu
 | Fase | Objetivo | Estado |
 |------|----------|--------|
 | **0** | Setup inicial con 1 botón | ✅ **COMPLETADO** |
-| **1** | Expandir estados del botón | 🔜 Próximo |
-| **2** | Integración con Figma | 🔜 |
-| **3** | Agregar segundo componente | 🔜 |
+| **1** | Expandir estados del botón | ✅ **COMPLETADO** |
+| **2** | Integración con Figma | ✅ **COMPLETADO** |
+| **3** | Agregar segundo componente | 🔜 Próximo |
 | **4** | Fixtures y datos reutilizables | 🔜 |
-| **5** | Automatizar con GitHub Actions | 🔜 |
+| **5** | Automatizar con GitHub Actions | ✅ **COMPLETADO** |
 | **6** | Catalogar componentes restantes | 🔜 |
 | **7** | Testing avanzado con mocking | 🔜 |
 | **8** | Coverage tracking | 🔜 |
