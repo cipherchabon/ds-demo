@@ -14,6 +14,10 @@ jobs:
   widgetbook-cloud:
     name: Build & Upload to Widgetbook Cloud
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
 
     steps:
       - name: Checkout
