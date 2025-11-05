@@ -55,27 +55,32 @@ jobs:
         run: dart pub global activate widgetbook_cli
 
       - name: Upload to Widgetbook Cloud
+        id: upload
         working-directory: widgetbook
         env:
           WIDGETBOOK_API_KEY: ${{ secrets.WIDGETBOOK_API_KEY }}
         run: |
-          widgetbook cloud build push \
+          OUTPUT=$(widgetbook cloud build push \
             --api-key "$WIDGETBOOK_API_KEY" \
             --branch "${{ github.head_ref || github.ref_name }}" \
             --commit "${{ github.sha }}" \
             --repository "${{ github.repository }}" \
-            --actor "${{ github.actor }}"
+            --actor "${{ github.actor }}" 2>&1)
+          echo "$OUTPUT"
+          BUILD_URL=$(echo "$OUTPUT" | grep -o 'https://app.widgetbook.io/[^[:space:]]*' | head -1)
+          echo "url=$BUILD_URL" >> $GITHUB_OUTPUT
 
       - name: Comment PR with Widgetbook Link
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
+            const buildUrl = '${{ steps.upload.outputs.url }}';
             const message = `### 📚 Widgetbook Cloud
 
             Tu Widgetbook ha sido publicado exitosamente.
 
-            [🔗 Ver Widgetbook en Cloud](https://app.widgetbook.io)
+            [🔗 Ver Widgetbook en Cloud](${buildUrl})
 
             **Branch:** \`${{ github.head_ref }}\`
             **Commit:** \`${{ github.sha }}\`
