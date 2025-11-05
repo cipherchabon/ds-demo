@@ -1,17 +1,87 @@
-# DemoApp - Sistema de Diseño con Widgetbook
+# DemoApp - Widgetbook Demo Incremental
 
-Demo de un sistema de diseño en Flutter con integración completa de Widgetbook para colaboración entre equipos de desarrollo y diseño.
+Demo paso a paso de Widgetbook para Flutter, enfocada en aprender el flujo de trabajo desde lo más básico hasta funcionalidades avanzadas.
 
-## 🎯 Descripción del Proyecto
+## 🎯 Objetivo de esta Demo
 
-Este proyecto es una demostración de cómo implementar un flujo de trabajo profesional de sistema de diseño utilizando **Widgetbook** como catálogo de componentes, integrando:
+Aprender Widgetbook de forma **gradual e incremental**:
+- Empezar con **1 solo botón**
+- Hacer el **primer push manual** a Widgetbook Cloud
+- Ir agregando funcionalidades paso a paso
+- Evaluar en cada fase si vale la pena continuar
 
-- 🎨 Componentes de UI reutilizables
-- 📚 Catálogo interactivo con Widgetbook
-- 🔄 CI/CD automatizado con GitHub Actions
-- ☁️ Publicación automática a Widgetbook Cloud
-- 🔗 Integración con Figma para QA de diseño
-- 🧪 Testing con fixtures y mocking
+**Filosofía:** De menor a mayor complejidad.
+
+## 📍 Estado Actual: Fase 0 ✅
+
+**Lo que tenemos ahora:**
+- ✅ Sistema de diseño básico con componentes en `lib/design_system/`
+- ✅ Widgetbook configurado en `widgetbook/`
+- ✅ **1 solo componente catalogado:** AppButton
+- ✅ **1 solo use-case:** Interactive (con knobs)
+- ✅ Addons básicos configurados (Viewport, Theme, Grid, TextScale)
+
+**Lo que NO tenemos (todavía):**
+- ❌ GitHub Actions automatizado (se agregará en Fase 5)
+- ❌ Links de Figma (se agregarán en Fase 2)
+- ❌ Múltiples componentes (se agregarán en Fases 3-6)
+- ❌ Fixtures y testing avanzado (se agregarán en Fases 4 y 7)
+
+## 🚀 Próximo Paso: Primer Push Manual
+
+Tu siguiente tarea es hacer el **primer push a Widgetbook Cloud** manualmente usando el CLI.
+
+**Guía completa:** [`docs/PRIMER_PUSH_MANUAL.md`](./docs/PRIMER_PUSH_MANUAL.md)
+
+**Resumen rápido:**
+
+```bash
+# 1. Ir al directorio de widgetbook
+cd widgetbook
+
+# 2. Instalar dependencias
+flutter pub get
+
+# 3. Generar código
+dart run build_runner build --delete-conflicting-outputs
+
+# 4. Construir para web
+flutter build web --release --base-href="/widgetbook/"
+
+# 5. Instalar CLI (solo primera vez)
+dart pub global activate widgetbook_cli
+
+# 6. Push a Cloud
+widgetbook cloud build push \
+  --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346" \
+  --branch "main" \
+  --commit "$(git rev-parse HEAD)" \
+  --repository "usuario/tu-repo" \
+  --actor "$(git config user.name)" \
+  --build-path build/web
+```
+
+**¿Problemas?** Consulta la sección de Troubleshooting en `docs/PRIMER_PUSH_MANUAL.md`.
+
+## 📋 Roadmap de la Demo
+
+Esta demo está organizada en **10 fases incrementales**. Puedes detenerte en cualquier momento.
+
+| Fase | Objetivo | Estado |
+|------|----------|--------|
+| **0** | Setup inicial con 1 botón | ✅ **COMPLETADO** |
+| **1** | Expandir estados del botón | 🔜 Próximo |
+| **2** | Integración con Figma | 🔜 |
+| **3** | Agregar segundo componente | 🔜 |
+| **4** | Fixtures y datos reutilizables | 🔜 |
+| **5** | Automatizar con GitHub Actions | 🔜 |
+| **6** | Catalogar componentes restantes | 🔜 |
+| **7** | Testing avanzado con mocking | 🔜 |
+| **8** | Coverage tracking | 🔜 |
+| **9** | Workflow del equipo | 🔜 |
+| **10** | Optimizaciones avanzadas | 🔜 |
+
+**Ver roadmap completo:** [`docs/ROADMAP_DEMO.md`](./docs/ROADMAP_DEMO.md)
 
 ## 🏗️ Estructura del Proyecto
 
@@ -20,321 +90,128 @@ demoapp/
 ├── lib/
 │   └── design_system/          # Componentes del sistema de diseño
 │       ├── buttons/
-│       │   └── app_button.dart
-│       ├── cards/
-│       │   ├── info_card.dart
-│       │   └── user_card.dart
+│       │   └── app_button.dart ← Nuestro componente de demo
+│       ├── cards/              # Componentes disponibles pero no catalogados aún
 │       ├── inputs/
-│       │   ├── app_text_field.dart
-│       │   └── app_search_field.dart
 │       └── typography/
-│           └── app_text.dart
 │
 ├── widgetbook/                 # Catálogo de Widgetbook
 │   ├── lib/
-│   │   ├── main.dart
-│   │   ├── use_cases/         # Use-cases de todos los componentes
-│   │   └── fixtures/          # Datos de ejemplo reutilizables
-│   └── README.md
+│   │   ├── main.dart           # Configuración de Widgetbook
+│   │   └── use_cases/
+│   │       └── buttons_usecases.dart  ← 1 use-case interactivo
+│   └── README.md               # Guía del widgetbook
 │
 ├── docs/                       # Documentación completa
-│   ├── GUIA_USO_WIDGETBOOK.md
-│   ├── TEAM_WORKFLOW.md
-│   ├── GITHUB_SETUP.md
-│   ├── FIGMA_LINKS_GUIDE.md
-│   ├── figma_integration.md
-│   ├── mocking_testing.md
-│   ├── CICDIntegration.md
-│   └── assets.md
+│   ├── PRIMER_PUSH_MANUAL.md   ← EMPIEZA AQUÍ
+│   ├── ROADMAP_DEMO.md         # Plan de iteraciones
+│   ├── GUIA_USO_WIDGETBOOK.md  # Guía completa de Widgetbook
+│   ├── FIGMA_LINKS_GUIDE.md    # Para Fase 2
+│   ├── GITHUB_SETUP.md         # Para Fase 5
+│   ├── TEAM_WORKFLOW.md        # Para Fase 9
+│   └── ...
 │
 └── .github/
     └── workflows/
-        └── widgetbook.yml      # CI/CD para Widgetbook Cloud
+        └── widgetbook.yml.disabled  # Se activará en Fase 5
 ```
 
-## 🚀 Inicio Rápido
+## 🎨 ¿Qué es Widgetbook?
 
-### Requisitos
+Widgetbook es como "Storybook" pero para Flutter. Permite:
 
-- Flutter SDK 3.24.0 o superior
-- Dart 3.9.2 o superior
-- Un editor (VS Code, Android Studio, IntelliJ)
+- 👀 Ver componentes aislados sin ejecutar toda la app
+- 🎨 Probar diferentes estados y variantes
+- 🔧 Modificar props en tiempo real con knobs
+- 📱 Simular diferentes dispositivos (iPhone, iPad, Android)
+- 🌗 Ver componentes en tema claro y oscuro
+- 🔗 Comparar implementación vs diseño de Figma
 
-### Instalación
+**Benefit para equipos:**
+- Diseñadores pueden revisar componentes sin instalar nada
+- Desarrolladores tienen un catálogo vivo del sistema de diseño
+- QA puede probar edge cases fácilmente
+- Reducción de idas y vueltas entre diseño y desarrollo
 
-```bash
-# Clonar el repositorio
-git clone <tu-repo>
-cd demoapp
-
-# Instalar dependencias del proyecto principal
-flutter pub get
-
-# Instalar dependencias de Widgetbook
-cd widgetbook
-flutter pub get
-```
+## 💻 Desarrollo Local
 
 ### Ejecutar la App Principal
 
 ```bash
-# Desde el directorio raíz
 flutter run
 ```
 
 ### Ejecutar Widgetbook
 
 ```bash
-# Ir al directorio de widgetbook
 cd widgetbook
 
-# Generar código
+# Generar código (necesario después de cambios)
 dart run build_runner build --delete-conflicting-outputs
 
 # Ejecutar en Chrome
 flutter run -d chrome
 ```
 
-El Widgetbook se abrirá en tu navegador y podrás explorar todos los componentes del sistema de diseño.
-
-## 📚 Widgetbook
-
-### ¿Qué es Widgetbook?
-
-Widgetbook es como "Storybook" pero para Flutter. Permite:
-
-- 👀 Ver componentes aislados sin ejecutar toda la app
-- 🎨 Probar diferentes estados y variantes
-- 📱 Simular diferentes dispositivos (iPhone, iPad, Android)
-- 🌗 Ver componentes en tema claro y oscuro
-- 🔧 Modificar props en tiempo real con knobs
-- 🔗 Comparar implementación vs diseño de Figma
-
-### Componentes Catalogados
-
-- **Botones:** AppButton (primary, secondary, text, loading, disabled)
-- **Tarjetas:** InfoCard, UserCard (verified, no avatar, edge cases)
-- **Inputs:** AppTextField, AppSearchField
-- **Tipografía:** AppText (h1, h2, h3, body, caption)
-
-### Acceder a Widgetbook Cloud
-
-- URL: https://app.widgetbook.io
-- El CI/CD publica automáticamente en cada PR
-- Los diseñadores pueden revisar sin instalar nada
-
-Ver [widgetbook/README.md](./widgetbook/README.md) para más información.
-
-## 🔄 Workflow de Desarrollo
-
-### Para Desarrolladores
-
-1. Crear/modificar componente en `lib/design_system/`
-2. Crear use-cases en `widgetbook/lib/use_cases/`
-3. Agregar `designLink` de Figma (opcional)
-4. Regenerar: `dart run build_runner build -d`
-5. Commit y push
-6. El CI automáticamente publica a Widgetbook Cloud
-
-### Para Diseñadores
-
-1. Recibir notificación de nuevo PR
-2. Abrir link de Widgetbook Cloud (del comentario en PR)
-3. Revisar componente en diferentes estados
-4. Usar overlay de Figma para comparar diseño vs implementación
-5. Aprobar o solicitar cambios en el PR
-
-Ver [docs/TEAM_WORKFLOW.md](./docs/TEAM_WORKFLOW.md) para el flujo completo.
-
-## ⚙️ CI/CD
-
-### GitHub Actions
-
-El proyecto incluye un workflow de GitHub Actions que:
-
-1. ✅ Ejecuta en cada push a `main`/`develop` y en PRs
-2. ✅ Genera el código de Widgetbook con build_runner
-3. ✅ Ejecuta coverage check (opcional)
-4. ✅ Construye Widgetbook para web
-5. ✅ Sube a Widgetbook Cloud automáticamente
-6. ✅ Comenta en el PR con el link de Widgetbook Cloud
-
-### Configuración
-
-Para que funcione en tu repositorio:
-
-1. Ve a GitHub → Settings → Secrets → Actions
-2. Agrega `WIDGETBOOK_API_KEY` con tu API key
-3. El workflow se ejecutará automáticamente
-
-Ver [docs/GITHUB_SETUP.md](./docs/GITHUB_SETUP.md) para detalles.
-
-## 🎨 Integración con Figma
-
-Los use-cases de Widgetbook incluyen links directos a los diseños de Figma usando el parámetro `designLink`:
-
-```dart
-@widgetbook.UseCase(
-  name: 'Primary',
-  type: AppButton,
-  path: '[Buttons]/AppButton',
-  designLink: 'https://www.figma.com/design/.../node-id=1-131',
-)
-```
-
-Esto permite a los diseñadores:
-- Ver el diseño original directamente desde Widgetbook Cloud
-- Usar el overlay de Figma para comparar píxel a píxel
-- Aprobar o solicitar cambios con confianza
-
-Ver [docs/FIGMA_LINKS_GUIDE.md](./docs/FIGMA_LINKS_GUIDE.md) para obtener links de Figma.
-
-## 🧪 Testing y Fixtures
-
-El proyecto incluye **fixtures** reutilizables para datos de ejemplo:
-
-```dart
-// widgetbook/lib/fixtures/user_fixtures.dart
-const user = UserFixtures.verified;
-
-UserCard(
-  name: user.name,
-  email: user.email,
-  avatarUrl: user.avatarUrl,
-  isVerified: user.isVerified,
-)
-```
-
-Beneficios:
-- ✅ Datos consistentes en todos los use-cases
-- ✅ Fácil mantenimiento
-- ✅ Incluye edge cases (nombres largos, emails largos, etc.)
-
-También incluye **mocktail** para mocking en casos más complejos.
-
-Ver [docs/mocking_testing.md](./docs/mocking_testing.md) para ejemplos.
-
-## 📊 Coverage
-
-Verifica qué componentes están catalogados en Widgetbook:
-
-```bash
-cd widgetbook
-widgetbook coverage --path lib/
-```
-
-El CI también ejecuta esto automáticamente y muestra los resultados.
-
-## 📖 Documentación
-
-El proyecto incluye documentación completa en la carpeta `docs/`:
-
-| Documento | Descripción |
-|-----------|-------------|
-| [GUIA_USO_WIDGETBOOK.md](./docs/GUIA_USO_WIDGETBOOK.md) | Guía completa de Widgetbook (50KB) |
-| [TEAM_WORKFLOW.md](./docs/TEAM_WORKFLOW.md) | Workflow para equipos de dev y diseño |
-| [GITHUB_SETUP.md](./docs/GITHUB_SETUP.md) | Setup de CI/CD con GitHub Actions |
-| [FIGMA_LINKS_GUIDE.md](./docs/FIGMA_LINKS_GUIDE.md) | Cómo obtener y usar links de Figma |
-| [figma_integration.md](./docs/figma_integration.md) | Integración avanzada con Figma |
-| [mocking_testing.md](./docs/mocking_testing.md) | Testing y mocking en Widgetbook |
-| [CICDIntegration.md](./docs/CICDIntegration.md) | CI/CD con diferentes plataformas |
-| [assets.md](./docs/assets.md) | Gestión de assets compartidos |
-
-## 🎯 Casos de Uso
-
-### 1. Desarrollo de Componentes
-
-```bash
-# Crear componente
-# → lib/design_system/buttons/new_button.dart
-
-# Crear use-case
-# → widgetbook/lib/use_cases/buttons_usecases.dart
-
-# Generar y probar
-cd widgetbook
-dart run build_runner build -d
-flutter run -d chrome
-```
-
-### 2. Revisión de Diseño
-
-```
-Diseñador recibe PR
-  → Abre Widgetbook Cloud desde comentario
-  → Navega al componente
-  → Activa overlay de Figma
-  → Compara diseño vs implementación
-  → Aprueba o solicita cambios
-```
-
-### 3. QA de Componentes
-
-```
-QA abre Widgetbook Cloud
-  → Prueba diferentes viewports (iPhone, iPad, Android)
-  → Cambia entre tema claro/oscuro
-  → Prueba con knobs (enabled, disabled, loading, etc.)
-  → Verifica edge cases (textos largos, sin datos)
-  → Valida accesibilidad
-```
-
-## 🛠️ Comandos Útiles
-
-### Proyecto Principal
-
-```bash
-# Ejecutar app
-flutter run
-
-# Ejecutar tests
-flutter test
-
-# Analizar código
-flutter analyze
-```
-
-### Widgetbook
-
-```bash
-# Desde widgetbook/
-dart run build_runner build -d        # Generar código
-dart run build_runner watch -d        # Watch mode
-flutter run -d chrome                  # Ejecutar
-widgetbook coverage --path lib/       # Ver coverage
-flutter clean                          # Limpiar builds
-```
-
-### CI/CD
-
-```bash
-# Ver workflows
-# GitHub → Actions tab
-
-# Re-ejecutar workflow
-# Click "Re-run jobs" en workflow fallido
-```
-
-## 🤝 Contribuir
-
-### Agregar Nuevo Componente
-
-1. Implementa el componente en `lib/design_system/[category]/`
-2. Crea use-cases en `widgetbook/lib/use_cases/`
-3. Agrega fixtures si es necesario
-4. Genera código: `dart run build_runner build -d`
-5. Prueba localmente: `flutter run -d chrome`
-6. Commit y push
-7. Crea PR
-8. Espera review de diseño en Widgetbook Cloud
-
-### Modificar Componente Existente
-
-1. Modifica el componente
-2. Actualiza use-cases si cambió la API
-3. Regenera código
-4. Verifica que no rompiste otros use-cases
-5. Push y espera review
+Deberías ver el botón en `[Buttons]/AppButton/Interactive` con knobs funcionales.
+
+## 📚 Documentación
+
+### Para Empezar
+- 📖 [`docs/PRIMER_PUSH_MANUAL.md`](./docs/PRIMER_PUSH_MANUAL.md) - Tu primer push a Cloud
+- 🗺️ [`docs/ROADMAP_DEMO.md`](./docs/ROADMAP_DEMO.md) - Plan completo de la demo
+- 📱 [`widgetbook/README.md`](./widgetbook/README.md) - Guía del widgetbook
+
+### Documentación Completa
+- 📘 [`docs/GUIA_USO_WIDGETBOOK.md`](./docs/GUIA_USO_WIDGETBOOK.md) - Guía completa (50KB)
+- 🎨 [`docs/FIGMA_LINKS_GUIDE.md`](./docs/FIGMA_LINKS_GUIDE.md) - Integración con Figma
+- ⚙️ [`docs/GITHUB_SETUP.md`](./docs/GITHUB_SETUP.md) - GitHub Actions (Fase 5)
+- 👥 [`docs/TEAM_WORKFLOW.md`](./docs/TEAM_WORKFLOW.md) - Workflow del equipo (Fase 9)
+- 🧪 [`docs/mocking_testing.md`](./docs/mocking_testing.md) - Testing avanzado (Fase 7)
+- 🔄 [`docs/CICDIntegration.md`](./docs/CICDIntegration.md) - CI/CD con otras plataformas
+
+## 🎯 Casos de Uso de la Demo
+
+### 1. Para Desarrolladores
+Aprender a:
+- Catalogar componentes en Widgetbook
+- Usar knobs para hacer componentes interactivos
+- Organizar use-cases de forma efectiva
+- Integrar Widgetbook en el workflow diario
+
+### 2. Para Diseñadores
+Aprender a:
+- Revisar componentes en Widgetbook Cloud
+- Usar el overlay de Figma para comparar diseños
+- Dar feedback efectivo en PRs
+- Aprobar componentes visualmente
+
+### 3. Para Equipos
+Demostrar:
+- Flujo de colaboración diseño-desarrollo
+- Reducción de iteraciones y malentendidos
+- Catálogo vivo del sistema de diseño
+- Proceso escalable para equipos grandes
+
+## ✅ Checklist del Primer Push
+
+Antes de continuar a la Fase 1, asegúrate de:
+
+- [ ] Widgetbook ejecuta localmente (`flutter run -d chrome`)
+- [ ] Ves el botón con knobs funcionales
+- [ ] Build de web completa sin errores
+- [ ] CLI de Widgetbook instalado
+- [ ] Primer push a Cloud exitoso
+- [ ] Puedes ver el botón en Widgetbook Cloud
+- [ ] Probaste los knobs (text, variant, loading, enabled)
+- [ ] Probaste cambiar viewport (iPhone, iPad)
+- [ ] Probaste cambiar tema (Light, Dark)
+- [ ] Probaste el Grid addon
+- [ ] Probaste el TextScale addon
+
+**¿Todos completos?** ¡Felicidades! Estás listo para la Fase 1. 🎉
+
+Ver `docs/ROADMAP_DEMO.md` para continuar.
 
 ## 🐛 Troubleshooting
 
@@ -342,63 +219,52 @@ flutter clean                          # Limpiar builds
 
 ```bash
 flutter clean
-cd widgetbook && flutter clean
 flutter pub get
-cd widgetbook && flutter pub get
-dart run build_runner build -d --verbose
+cd widgetbook
+flutter clean
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs --verbose
 ```
 
-### "Widgetbook Cloud upload failed"
+### "widgetbook command not found"
 
-- Verifica que `WIDGETBOOK_API_KEY` esté configurado en GitHub Secrets
-- Revisa los logs de GitHub Actions
-- Asegúrate de que el proyecto exista en Widgetbook Cloud
+```bash
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+echo 'export PATH="$PATH":"$HOME/.pub-cache/bin"' >> ~/.zshrc
+```
 
-### "No veo el overlay de Figma"
+### "No veo el botón en Widgetbook local"
 
-- Verifica que el `designLink` esté en el use-case
-- Regenera el código: `dart run build_runner build -d`
-- Haz push para que se reconstruya en CI
+- ¿Ejecutaste `dart run build_runner build`?
+- ¿Reiniciaste la app después de regenerar?
+- ¿Estás en el directorio `widgetbook/`?
 
-## 📈 Roadmap
+### Más problemas
 
-### Implementado ✅
+Consulta `docs/PRIMER_PUSH_MANUAL.md` sección de Troubleshooting.
 
-- ✅ Sistema de diseño básico con componentes
-- ✅ Widgetbook configurado con addons
-- ✅ CI/CD con GitHub Actions
-- ✅ Integración con Widgetbook Cloud
-- ✅ Links de Figma en use-cases
-- ✅ Fixtures para testing
-- ✅ Coverage tracking
-- ✅ Documentación completa
+## 🤝 Contribuir
 
-### Por Implementar 🔜
+Este es un proyecto de demo, pero si encuentras mejoras:
 
-- 🔜 Visual regression testing automático
-- 🔜 Notificaciones de Slack/Discord
-- 🔜 Multi-snapshot para responsive testing
-- 🔜 Publicar componentes como package
-- 🔜 Storybook de accesibilidad
-- 🔜 Integración con Codemagic (alternativa a GitHub Actions)
+1. Crea un issue describiendo el problema
+2. Propón una solución
+3. Si quieres, crea un PR
 
 ## 📞 Soporte
 
-- 📖 Consulta la [documentación](./docs/)
-- 🐛 Reporta bugs en [GitHub Issues](https://github.com/tu-repo/issues)
-- 💬 Preguntas en [GitHub Discussions](https://github.com/tu-repo/discussions)
-- 📧 Email: design-system@tuempresa.com
-
-## 📝 Licencia
-
-[Tu licencia aquí]
+- 📖 Consulta la documentación en `docs/`
+- 🐛 Reporta problemas como GitHub Issues
+- 💬 Haz preguntas en GitHub Discussions
 
 ## 🙏 Agradecimientos
 
-- [Widgetbook](https://widgetbook.io) - Amazing tool for Flutter component catalogs
-- [Flutter](https://flutter.dev) - Beautiful UI framework
-- Equipo de diseño y desarrollo
+- [Widgetbook](https://widgetbook.io) - Por la herramienta increíble
+- [Flutter](https://flutter.dev) - Por el framework
+- Comunidad de Flutter por el soporte
 
 ---
 
-**Hecho con ❤️ para demostrar el flujo de trabajo ideal con Widgetbook**
+**Próximo paso:** 📖 Lee [`docs/PRIMER_PUSH_MANUAL.md`](./docs/PRIMER_PUSH_MANUAL.md) y haz tu primer push a Widgetbook Cloud.
+
+**¡Mucha suerte con tu demo!** 🚀
