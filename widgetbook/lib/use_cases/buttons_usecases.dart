@@ -17,7 +17,7 @@ Widget buildAppButtonInteractive(BuildContext context) {
     child: AppButton(
       text: context.knobs.string(
         label: 'Text',
-        initialValue: 'Click me',
+        initialValue: 'Haz click aquí',
       ),
       variant: context.knobs.object.dropdown<ButtonVariant>(
         label: 'Variant',
