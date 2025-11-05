@@ -34,6 +34,8 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'Interactive',
                 builder: _widgetbook_workspace_use_cases_buttons_usecases
                     .buildInteractiveButton,
+                designLink:
+                    'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-131&t=QO0UDXS46aSqMwRT-4',
               ),
             ],
           ),
@@ -47,21 +49,29 @@ final directories = <_widgetbook.WidgetbookNode>[
                     name: 'Disabled',
                     builder: _widgetbook_workspace_use_cases_buttons_usecases
                         .buildDisabledButton,
+                    designLink:
+                        'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-133',
                   ),
                   _widgetbook.WidgetbookUseCase(
                     name: 'Loading',
                     builder: _widgetbook_workspace_use_cases_buttons_usecases
                         .buildLoadingButton,
+                    designLink:
+                        'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-134',
                   ),
                   _widgetbook.WidgetbookUseCase(
                     name: 'Primary',
                     builder: _widgetbook_workspace_use_cases_buttons_usecases
                         .buildPrimaryButton,
+                    designLink:
+                        'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-131',
                   ),
                   _widgetbook.WidgetbookUseCase(
                     name: 'Secondary',
                     builder: _widgetbook_workspace_use_cases_buttons_usecases
                         .buildSecondaryButton,
+                    designLink:
+                        'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-132',
                   ),
                 ],
               ),
@@ -97,6 +107,46 @@ final directories = <_widgetbook.WidgetbookNode>[
       _widgetbook.WidgetbookFolder(
         name: 'UserCard',
         children: [
+          _widgetbook.WidgetbookFolder(
+            name: 'Edge Cases',
+            children: [
+              _widgetbook.WidgetbookComponent(
+                name: 'UserCard',
+                useCases: [
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'Long Email',
+                    builder: _widgetbook_workspace_use_cases_cards_usecases
+                        .buildUserCardLongEmail,
+                  ),
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'Long Name',
+                    builder: _widgetbook_workspace_use_cases_cards_usecases
+                        .buildUserCardLongName,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookFolder(
+            name: 'States',
+            children: [
+              _widgetbook.WidgetbookComponent(
+                name: 'UserCard',
+                useCases: [
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'Verified User',
+                    builder: _widgetbook_workspace_use_cases_cards_usecases
+                        .buildUserCardVerified,
+                  ),
+                  _widgetbook.WidgetbookUseCase(
+                    name: 'Without Avatar',
+                    builder: _widgetbook_workspace_use_cases_cards_usecases
+                        .buildUserCardNoAvatar,
+                  ),
+                ],
+              ),
+            ],
+          ),
           _widgetbook.WidgetbookComponent(
             name: 'UserCard',
             useCases: [
@@ -104,16 +154,6 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'Default',
                 builder: _widgetbook_workspace_use_cases_cards_usecases
                     .buildUserCardDefault,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'Verified User',
-                builder: _widgetbook_workspace_use_cases_cards_usecases
-                    .buildUserCardVerified,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'With Avatar',
-                builder: _widgetbook_workspace_use_cases_cards_usecases
-                    .buildUserCardWithAvatar,
               ),
             ],
           ),

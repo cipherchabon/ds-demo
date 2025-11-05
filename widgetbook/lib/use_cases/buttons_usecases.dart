@@ -7,6 +7,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
   name: 'Interactive',
   type: AppButton,
   path: '[Buttons]/AppButton',
+  designLink: 'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-131&t=QO0UDXS46aSqMwRT-4',
 )
 Widget buildInteractiveButton(BuildContext context) {
   return Center(
@@ -30,6 +31,7 @@ Widget buildInteractiveButton(BuildContext context) {
   name: 'Primary',
   type: AppButton,
   path: '[Buttons]/AppButton/States',
+  designLink: 'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-131',
 )
 Widget buildPrimaryButton(BuildContext context) {
   return Center(
@@ -45,6 +47,7 @@ Widget buildPrimaryButton(BuildContext context) {
   name: 'Secondary',
   type: AppButton,
   path: '[Buttons]/AppButton/States',
+  designLink: 'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-132',
 )
 Widget buildSecondaryButton(BuildContext context) {
   return Center(
@@ -60,6 +63,7 @@ Widget buildSecondaryButton(BuildContext context) {
   name: 'Disabled',
   type: AppButton,
   path: '[Buttons]/AppButton/States',
+  designLink: 'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-133',
 )
 Widget buildDisabledButton(BuildContext context) {
   return Center(
@@ -75,6 +79,7 @@ Widget buildDisabledButton(BuildContext context) {
   name: 'Loading',
   type: AppButton,
   path: '[Buttons]/AppButton/States',
+  designLink: 'https://www.figma.com/design/eu4y7kUHlOnPQsu160wZkX/ds-demo?node-id=1-134',
 )
 Widget buildLoadingButton(BuildContext context) {
   return Center(

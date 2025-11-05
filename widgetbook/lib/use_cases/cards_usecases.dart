@@ -3,6 +3,7 @@ import 'package:demoapp/design_system/cards/user_card.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+import '../fixtures/user_fixtures.dart';
 
 // InfoCard Use-Cases
 @widgetbook.UseCase(name: 'Default', type: InfoCard, path: '[Cards]/InfoCard')
@@ -62,32 +63,75 @@ Widget buildUserCardDefault(BuildContext context) {
 @widgetbook.UseCase(
   name: 'Verified User',
   type: UserCard,
-  path: '[Cards]/UserCard',
+  path: '[Cards]/UserCard/States',
 )
 Widget buildUserCardVerified(BuildContext context) {
-  return const Padding(
-    padding: EdgeInsets.all(16),
+  const user = UserFixtures.verified;
+  return Padding(
+    padding: const EdgeInsets.all(16),
     child: UserCard(
-      name: 'María García',
-      email: 'maria.garcia@example.com',
-      isVerified: true,
+      name: user.name,
+      email: user.email,
+      avatarUrl: user.avatarUrl,
+      isVerified: user.isVerified,
+      onTap: () => debugPrint('Tapped: ${user.name}'),
     ),
   );
 }
 
 @widgetbook.UseCase(
-  name: 'With Avatar',
+  name: 'Without Avatar',
   type: UserCard,
-  path: '[Cards]/UserCard',
+  path: '[Cards]/UserCard/States',
 )
-Widget buildUserCardWithAvatar(BuildContext context) {
-  return const Padding(
-    padding: EdgeInsets.all(16),
+Widget buildUserCardNoAvatar(BuildContext context) {
+  const user = UserFixtures.noAvatar;
+  return Padding(
+    padding: const EdgeInsets.all(16),
     child: UserCard(
-      name: 'Carlos Rodríguez',
-      email: 'carlos.rodriguez@example.com',
-      avatarUrl: 'https://i.pravatar.cc/150?img=1',
-      isVerified: true,
+      name: user.name,
+      email: user.email,
+      avatarUrl: user.avatarUrl,
+      isVerified: user.isVerified,
+      onTap: () => debugPrint('Tapped: ${user.name}'),
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'Long Name',
+  type: UserCard,
+  path: '[Cards]/UserCard/Edge Cases',
+)
+Widget buildUserCardLongName(BuildContext context) {
+  const user = UserFixtures.longName;
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: UserCard(
+      name: user.name,
+      email: user.email,
+      avatarUrl: user.avatarUrl,
+      isVerified: user.isVerified,
+      onTap: () => debugPrint('Tapped: ${user.name}'),
+    ),
+  );
+}
+
+@widgetbook.UseCase(
+  name: 'Long Email',
+  type: UserCard,
+  path: '[Cards]/UserCard/Edge Cases',
+)
+Widget buildUserCardLongEmail(BuildContext context) {
+  const user = UserFixtures.longEmail;
+  return Padding(
+    padding: const EdgeInsets.all(16),
+    child: UserCard(
+      name: user.name,
+      email: user.email,
+      avatarUrl: user.avatarUrl,
+      isVerified: user.isVerified,
+      onTap: () => debugPrint('Tapped: ${user.name}'),
     ),
   );
 }

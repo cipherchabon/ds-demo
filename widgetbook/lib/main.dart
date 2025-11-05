@@ -33,9 +33,8 @@ class MyApp extends StatelessWidget {
           ],
         ),
         AlignmentAddon(),
-        // GridAddon(),
-        // TextScaleAddon(),
-        // SemanticsAddon()
+        GridAddon(),
+        TextScaleAddon(),
         // InspectorAddon(enabled: true),
         // ZoomAddon(),
       ],
