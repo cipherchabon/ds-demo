@@ -73,8 +73,11 @@ flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 
 # Construye para web
-flutter build web --release --base-href="/widgetbook/"
+flutter build web --release
 ```
+
+**💡 Nota sobre `--base-href`:**
+No necesitas usar `--base-href="/widgetbook/"` para Widgetbook Cloud. Ese parámetro solo es útil si deployeas a un subdirectorio en tu propio servidor web. Widgetbook Cloud maneja el routing automáticamente.
 
 **Tiempo estimado:** 1-3 minutos dependiendo de tu máquina.
 
@@ -233,7 +236,7 @@ Cada vez que hagas cambios:
    ```
 4. **Construye para web:**
    ```bash
-   flutter build web --release --base-href="/widgetbook/"
+   flutter build web --release
    ```
 5. **Push a Cloud:**
    ```bash
@@ -260,7 +263,7 @@ Crea un archivo `widgetbook/push_to_cloud.sh`:
 set -e  # Exit on error
 
 echo "🔨 Building Widgetbook..."
-flutter build web --release --base-href="/widgetbook/"
+flutter build web --release
 
 echo "☁️  Pushing to Widgetbook Cloud..."
 widgetbook cloud build push \

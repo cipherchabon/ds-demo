@@ -46,7 +46,7 @@ flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 
 # 4. Construir para web
-flutter build web --release --base-href="/widgetbook/"
+flutter build web --release
 
 # 5. Instalar CLI (solo primera vez)
 dart pub global activate widgetbook_cli
