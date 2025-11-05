@@ -121,28 +121,75 @@ source ~/.zshrc
 
 ### Paso 5: Hacer el Push a Widgetbook Cloud
 
-Ahora viene la parte importante. Desde el directorio `widgetbook`, ejecuta:
+Ahora viene la parte importante. Tienes **dos opciones** según tus necesidades:
+
+#### Opción A: Versión Mínima (Solo Requeridos) ⭐ Recomendada para empezar
+
+Si solo quieres subir el build rápidamente:
 
 ```bash
+cd widgetbook
+widgetbook cloud build push \
+  --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346"
+```
+
+✅ **Ventajas:**
+- ¡Solo 1 parámetro requerido!
+- Simple y rápido
+- Perfecto para el primer push
+
+❌ **Desventajas:**
+- No verás información de branch/commit en Cloud
+- Más difícil organizar múltiples builds
+
+#### Opción B: Versión Completa (Con Metadata)
+
+Si tienes Git configurado y quieres mejor organización:
+
+```bash
+cd widgetbook
 widgetbook cloud build push \
   --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346" \
-  --branch "main" \
+  --branch "$(git rev-parse --abbrev-ref HEAD)" \
   --commit "$(git rev-parse HEAD)" \
   --repository "tu-usuario/tu-repo" \
-  --actor "$(git config user.name)" \
-  --build-path build/web
+  --actor "$(git config user.name)"
 ```
 
 **⚠️ Importante:** Reemplaza `tu-usuario/tu-repo` con tu repositorio real de GitHub (ej: `cypherchabon/demoapp`).
 
+✅ **Ventajas:**
+- Ves el nombre de la rama en Cloud
+- Ves el commit hash para trazabilidad
+- Mejor organización de builds
+- Links a GitHub (si configuras repository)
+
+#### Opción C: Sin Git (Valores Estáticos)
+
+Si no tienes Git o los comandos `$(git ...)` fallan:
+
+```bash
+cd widgetbook
+widgetbook cloud build push \
+  --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346" \
+  --branch "demo" \
+  --commit "primer-push"
+```
+
+---
+
 **Parámetros explicados:**
 
-- `--api-key`: Tu API key de Widgetbook Cloud
-- `--branch`: La rama actual (ej: main, develop, feat/button)
-- `--commit`: El hash del commit actual
-- `--repository`: Tu repositorio de GitHub (formato: usuario/repo)
-- `--actor`: Tu nombre (quien hizo el push)
-- `--build-path`: Directorio donde está el build de web
+| Parámetro | Requerido | Descripción |
+|-----------|-----------|-------------|
+| `--api-key` | ✅ **SÍ** | Tu API key de Widgetbook Cloud |
+| `--path` | ❌ No | Path al directorio padre de `build/` (default: `./`) |
+| `--branch` | ❌ No | La rama actual (ej: main, develop, feat/button) |
+| `--commit` | ❌ No | El hash del commit actual |
+| `--repository` | ❌ No | Tu repositorio de GitHub (formato: usuario/repo) |
+| `--actor` | ❌ No | Tu nombre (quien hizo el push) |
+
+**💡 Nota:** Cuando ejecutas desde el directorio `widgetbook/`, el CLI busca automáticamente `build/web/`, por eso no necesitas especificar `--path`.
 
 **Output esperado:**
 
@@ -190,13 +237,14 @@ Cada vez que hagas cambios:
    ```
 5. **Push a Cloud:**
    ```bash
+   # Versión mínima
+   widgetbook cloud build push --api-key "..."
+
+   # O versión con metadata (recomendada)
    widgetbook cloud build push \
      --api-key "..." \
      --branch "$(git rev-parse --abbrev-ref HEAD)" \
-     --commit "$(git rev-parse HEAD)" \
-     --repository "usuario/repo" \
-     --actor "$(git config user.name)" \
-     --build-path build/web
+     --commit "$(git rev-parse HEAD)"
    ```
 
 ## 💡 Tips para Facilitar el Proceso
@@ -218,10 +266,7 @@ echo "☁️  Pushing to Widgetbook Cloud..."
 widgetbook cloud build push \
   --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346" \
   --branch "$(git rev-parse --abbrev-ref HEAD)" \
-  --commit "$(git rev-parse HEAD)" \
-  --repository "cypherchabon/demoapp" \
-  --actor "$(git config user.name)" \
-  --build-path build/web
+  --commit "$(git rev-parse HEAD)"
 
 echo "✅ Done! Check Widgetbook Cloud"
 ```

@@ -51,14 +51,9 @@ flutter build web --release --base-href="/widgetbook/"
 # 5. Instalar CLI (solo primera vez)
 dart pub global activate widgetbook_cli
 
-# 6. Push a Cloud
+# 6. Push a Cloud (versión mínima)
 widgetbook cloud build push \
-  --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346" \
-  --branch "main" \
-  --commit "$(git rev-parse HEAD)" \
-  --repository "usuario/tu-repo" \
-  --actor "$(git config user.name)" \
-  --build-path build/web
+  --api-key "9ba437347f12fd3a8c8267142db7abcaf0c48022bd4e6838dd023464fa031346"
 ```
 
 **¿Problemas?** Consulta la sección de Troubleshooting en `docs/PRIMER_PUSH_MANUAL.md`.
