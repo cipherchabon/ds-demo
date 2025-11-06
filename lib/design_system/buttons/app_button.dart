@@ -22,37 +22,37 @@ class AppButton extends StatelessWidget {
 
     return switch (variant) {
       ButtonVariant.primary => ElevatedButton(
-          onPressed: isEnabled ? onPressed : null,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
+        onPressed: isEnabled ? onPressed : null,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.yellow,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
-          child: _buildChild(),
         ),
+        child: _buildChild(),
+      ),
       ButtonVariant.secondary => OutlinedButton(
-          onPressed: isEnabled ? onPressed : null,
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.blue,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-            side: const BorderSide(color: Colors.blue),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
+        onPressed: isEnabled ? onPressed : null,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.yellow,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          side: const BorderSide(color: Colors.yellow),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
-          child: _buildChild(),
         ),
+        child: _buildChild(),
+      ),
       ButtonVariant.text => TextButton(
-          onPressed: isEnabled ? onPressed : null,
-          style: TextButton.styleFrom(
-            foregroundColor: Colors.blue,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          ),
-          child: _buildChild(),
+        onPressed: isEnabled ? onPressed : null,
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.yellow,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         ),
+        child: _buildChild(),
+      ),
     };
   }
 
