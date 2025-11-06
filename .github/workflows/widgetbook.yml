@@ -63,7 +63,7 @@ jobs:
           OUTPUT=$(widgetbook cloud build push \
             --api-key "$WIDGETBOOK_API_KEY" \
             --branch "${{ github.head_ref || github.ref_name }}" \
-            --commit "${{ github.sha }}" \
+            --commit "${{ github.event.pull_request.head.sha || github.sha }}" \
             --repository "${{ github.repository }}" \
             --actor "${{ github.actor }}" 2>&1)
           echo "$OUTPUT"
@@ -83,7 +83,7 @@ jobs:
             [🔗 Ver Widgetbook en Cloud](${buildUrl})
 
             **Branch:** \`${{ github.head_ref }}\`
-            **Commit:** \`${{ github.sha }}\`
+            **Commit:** \`${{ github.event.pull_request.head.sha || github.sha }}\`
             `;
 
             github.rest.issues.createComment({
